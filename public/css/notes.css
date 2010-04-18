@@ -1,0 +1,10 @@
+body { font-family:monospace; margin:0; padding:0; margin-right:4px;}
+input#search { width:100%; }
+div#search-results-container { margin:0; margin-left: 4px; padding:0; outline:1px solid silver;}
+li { width: 100%; overflow:hidden; }
+ul { list-style-type:none; white-space:nowrap; margin:0; padding:0; background-color:white; }
+li a { color:black; text-decoration:none; display:block; line-height:1.8em; width:100%; }
+a.selected { font-weight:bold; }
+a.search-selected { background-color: #def; }
+div#note textarea { width:100%; min-height:20em; }
+.recede, .mod_date { color:gray; }
