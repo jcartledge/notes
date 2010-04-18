@@ -97,11 +97,11 @@ function update_note($title) {
 
 //view helper function
 function search_context_string($note, $title_length = 26, $context_length = 200, $context_pre = 50, $mod_length = 14) {
-  $search = $_GET["search"];
+  $search = str_replace("\0", '', $_GET["search"]);
   $first_occurrence = strlen($search) ? strpos(strtoupper($note->note_clean), strtoupper($search)) : 0;
   $context = substr($note->note_clean, max(0, $first_occurrence - $context_pre), $context_length);
-  $context = preg_replace( '/(' . preg_quote(str_replace("\0", '', $search), '/') . ')/i',
-    '<strong>$1</strong>', $context); // <-- doesn't work so good
+  if(strlen($search)) $context = preg_replace( '/(' . preg_quote($search, '/') . ')/i',
+    '<strong>$1</strong>', $context);
   $mod_date = str_replace(' ', '&nbsp;', str_pad($note->updated ? substr(pastime($note->updated), 0, $mod_length) : '', $mod_length, ' '));
   $title = str_replace(' ', '&nbsp;', str_pad(substr($note->title, 0, $title_length), $title_length, ' '));
   return $title . '<span class="mod_date"> . ' . $mod_date . ' . </span>' . $context;
